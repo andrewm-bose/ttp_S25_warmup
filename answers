@@ -1,0 +1,75 @@
+-- SQL
+
+-- grab all data from the film table
+SELECT * 
+FROM film;
+
+-- English films only : return all films that have a language ID of 1
+-- (note: we already know this happens to be all the films in the database
+-- but let's make sure we know how to do this IF there was multiple languages)
+SELECT *
+FROM film
+WHERE language_id = 1;
+
+-- English films for todlers
+-- return all films with language ID of 1 and is rated G
+SELECT *
+FROM film
+WHERE language_id = 1 AND
+	  rating = 'G';
+	  
+-- Family friendly English films
+-- return all films with language ID of 1 and is rated G, PG, or PG-13
+SELECT *
+FROM film
+WHERE language_id = 1 AND
+	  rating IN ('G', 'PG', 'PG-13');
+
+-- Family friendly English films on a budget:
+-- return all films with language ID of 1 and is rated G, PG, or PG-13,
+-- and have a rental rate less than $3 and a replacement cost less than $10
+SELECT *
+FROM film
+WHERE language_id = 1 AND
+	  rating IN ('G', 'PG', 'PG-13') AND
+	  rental_rate < 3 AND
+	  replacement_cost < 15;
+	  
+-- Nostalgiac family friendly English films on a budget with a short attention span!:
+-- return all films with language ID of 1 and is rated G, PG, or PG-13,
+-- and have a rental rate less than $3 and a replacement cost less than $10,
+-- and last less than an hour and a half long, from the year 2006 or earlier
+SELECT *
+FROM film
+WHERE language_id = 1 AND
+	  rating IN ('G', 'PG', 'PG-13') AND
+	  rental_rate < 3 AND
+	  replacement_cost < 15 AND
+	  release_year <= 2006 AND
+	  length < 90;
+	  
+-- BONUS
+-- Of the films from the previous query, which ones talk about a 'Moose' in the description?
+SELECT *
+FROM film
+WHERE language_id = 1 AND
+	  rating IN ('G', 'PG', 'PG-13') AND
+	  rental_rate < 3 AND
+	  replacement_cost < 15 AND
+	  release_year <= 2006 AND
+	  length < 90 AND
+	  LOWER(description) LIKE '%moose%';
+
+
+
+
+# python
+# THE FOLLOWING CODE DOESN'T RUN. THERE'S 2 ERRORS, CAN YOU FIX THEM?
+
+# 17- print every even element of the list, sorted backwards
+lst = [1,7,2,6,3,5,4,10,9,8,7,6,5,4,3,2,22]
+lst_even = []
+for element in lst: #missed colon at end of for loop
+    if element % 2 == 0: # = instead of == for conditional argument
+        lst_even.append(element)
+list(reversed(sorted(lst_even)))
